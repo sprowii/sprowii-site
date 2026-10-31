@@ -22,9 +22,11 @@
   </style>
 </head>
 <body>
-  <iframe 
-    src="https://chastely-enduring-cow.cloudpub.ru/" 
-    allow="fullscreen; clipboard-read; clipboard-write; microphone; camera; autoplay">
-  </iframe>
+  <iframe id="app-frame" allow="fullscreen; clipboard-read; clipboard-write; microphone; camera; autoplay"></iframe>
+  <script>
+    const tunnelBase = "https://chastely-enduring-cow.cloudpub.ru";
+    const path = window.location.pathname + window.location.search + window.location.hash;
+    document.getElementById("app-frame").src = tunnelBase + path;
+  </script>
 </body>
 </html>
