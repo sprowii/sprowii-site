@@ -2,31 +2,138 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Sprowii</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      background-color: #000;
-    }
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      display: block;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>SPROWII | Игровая студия</title>
+  <meta name="description" content="SPROWII — инди-студия игр. Dungeon Journey и игра с водяными пистолетами на Roblox, психологический хоррор LIFT. Создаём игры с душой.">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="canonical" href="https://sprowii.ru/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="SPROWII">
+  <meta property="og:title" content="SPROWII | Игровая студия">
+  <meta property="og:description" content="Создаём игры с душой. Dungeon Journey, водяные пистолеты на Roblox и хоррор LIFT.">
+  <meta property="og:url" content="https://sprowii.ru/">
+  <meta property="og:locale" content="ru_RU">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/dist/styles.min.css">
+  <script src="/dist/script.min.js" defer></script>
 </head>
 <body>
-  <iframe id="app-frame" allow="fullscreen" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-  <script>
-  const tunnelBase = "https://chastely-enduring-cow.cloudpub.ru";
-  const cleanPath = "/" + (window.location.pathname + window.location.search + window.location.hash).replace(/^\/+/, "");
-  document.getElementById("app-frame").src = tunnelBase + cleanPath;
-  </script>
+  <a class="skip" href="#main">Перейти к содержимому</a>
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="progress-bar" aria-hidden="true"></div>
+  <button type="button" class="scroll-top" aria-label="Наверх"></button>
+
+  <nav aria-label="Основная навигация">
+    <div class="nav-links">
+      <a href="#home">Главная</a>
+      <a href="#about">О нас</a>
+      <a href="#projects">Проекты</a>
+      <a href="#contact">Контакты</a>
+    </div>
+  </nav>
+
+  <div class="consent-banner" id="consentBanner" role="region" aria-label="Согласие с условиями сайта">
+    <div class="consent-text">
+      Продолжая, вы подтверждаете, что вам 16 лет, и принимаете <a href="/user-agreement" target="_blank" rel="noopener">Пользовательское соглашение</a> и <a href="/privacy" target="_blank" rel="noopener">Политику обработки данных</a>.
+      <span class="consent-note" id="consentNote" role="status" hidden>Для использования сайта необходимо принять соглашение.</span>
+    </div>
+    <div class="consent-buttons">
+      <button type="button" class="consent-button consent-accept" id="acceptConsent">Принять</button>
+      <button type="button" class="consent-button consent-decline" id="declineConsent">Отклонить</button>
+    </div>
+  </div>
+
+  <main id="main">
+    <section class="hero" id="home">
+      <canvas class="particles" id="particles" aria-hidden="true"></canvas>
+      <div class="hero-content">
+        <span class="hero-badge">Indie Game Studio</span>
+        <h1>SPROWII</h1>
+        <p class="tagline">Создаём игры с душой <span class="nw">(сто проц)</span></p>
+        <div class="hero-line"></div>
+        <div class="hero-cta">
+          <a class="pill solid" href="#projects">Смотреть проекты</a>
+          <a class="pill" href="#contact">Связаться</a>
+        </div>
+      </div>
+      <a class="scroll-hint" href="#about" aria-label="Прокрутить вниз"><span></span></a>
+    </section>
+
+    <section id="about" aria-labelledby="about-title">
+      <div class="section-header rv rv-r">
+        <h2 id="about-title">О нас</h2>
+      </div>
+      <div class="about-content">
+        <p class="rv" style="--d:.1s">Мы — команда энтузиастов, создающая инновационные игровые решения.</p>
+        <p class="rv" style="--d:.2s">Наша философия: сочетание передовых технологий с глубоким погружением в игровой процесс.</p>
+        <ul class="chips rv" style="--d:.3s" aria-label="С чем работаем">
+          <li>Roblox</li><li>C++</li><li>raylib</li><li>Multiplayer</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="projects" aria-labelledby="projects-title">
+      <div class="section-header rv rv-r">
+        <h2 id="projects-title">Проекты</h2>
+      </div>
+      <div class="projects-grid">
+        <article class="project-card rv rv-z">
+          <span class="project-tag">Roblox • Alpha</span>
+          <h3>Dungeon Journey</h3>
+          <p>Захватывающие сражения в подземельях. Исследуй, сражайся, побеждай. Сделано только обучение, доделывание не планируется</p>
+          <a href="https://www.roblox.com/games/18578550322/Dungeon-Journey-Lobby" class="external-link" data-url="https://www.roblox.com/games/18578550322/Dungeon-Journey-Lobby" target="_blank" rel="noopener noreferrer">Играть<span class="visually-hidden"> в Dungeon Journey (откроется Roblox)</span></a>
+        </article>
+        <article class="project-card rv rv-z" style="--d:.15s">
+          <span class="project-tag">Roblox • Multiplayer</span>
+          <h3>titled game</h3>
+          <p>Пародия на Fortnite, только с водяными пистолетами. Создавай лобби и залетай играть с друзьями, могайте друг друга.</p>
+          <a href="https://www.roblox.com/share?code=8dc6fd100606824f9c42deb300953e07&amp;type=ExperienceDetails&amp;stamp=1792341366639" class="external-link" data-url="https://www.roblox.com/share?code=8dc6fd100606824f9c42deb300953e07&type=ExperienceDetails&stamp=1792341366639" target="_blank" rel="noopener noreferrer">Играть<span class="visually-hidden"> в игру с водяными пистолетами (откроется Roblox)</span></a>
+        </article>
+        <article class="project-card rv rv-z" style="--d:.3s">
+          <span class="project-tag">C++ • raylib • В браузере</span>
+          <h3>LIFT</h3>
+          <p>Короткий психологический хоррор про побег из лаборатории. Четыре этажа, головоломки и лифт. В начале могут быть ошибки, просто нажимайте "скрыть".</p>
+          <a href="https://sprowii.github.io/lift/" target="_blank" rel="noopener noreferrer">Играть<span class="visually-hidden"> в LIFT (откроется в новой вкладке)</span></a>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" aria-labelledby="contact-title">
+      <div class="section-header rv rv-r">
+        <h2 id="contact-title">Контакты</h2>
+      </div>
+      <div class="contact-grid rv rv-z" style="--d:.15s">
+        <div class="contact-item">
+          <p>По всем вопросам</p>
+          <a href="#" class="mail" data-e="Y29udGFjdEBzcHJvd2lpLnJ1" data-copy>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg><span class="lbl">показать почту</span>
+          </a>
+          <noscript><span class="noscript-mail">contact [at] sprowii [dot] ru</span></noscript>
+        </div>
+        <div class="contact-item">
+          <p>GitHub</p>
+          <a href="https://github.com/sprowii" target="_blank" rel="noopener noreferrer">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg><span class="lbl">sprowii</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© <span id="year">2026</span> SPROWII · <a href="/user-agreement">Соглашение</a> · <a href="/privacy">Персональные данные</a></p>
+  </footer>
+
+  <div class="external-modal" id="externalModal" role="dialog" aria-modal="true" aria-labelledby="externalTitle" aria-hidden="true">
+    <div class="external-modal-content">
+      <h3 id="externalTitle">Переход на сторонний ресурс</h3>
+      <p>Вы покидаете сайт SPROWII и переходите на внешний ресурс. Мы не несём ответственности за содержимое сторонних сайтов.</p>
+      <p class="external-url" id="externalUrl"></p>
+      <div class="external-modal-buttons">
+        <button type="button" class="btn-continue" id="continueBtn">Продолжить</button>
+        <button type="button" class="btn-cancel" id="cancelBtn">Отмена</button>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

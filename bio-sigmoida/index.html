@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>био @mogaqu</title>
+  <meta name="theme-color" content="#000000" />
+
+  <!-- Fonts -->
+
+  <style>
+    :root {
+      --bg:#000;
+      --fg:#fff;
+      --accent:#fff;
+      --muted:#444;
+      --glow:rgba(255,255,255,0.1);
+      --mouse-x:0;
+      --mouse-y:0
+    }
+    * { margin:0; padding:0; box-sizing:border-box }
+    html { scroll-behavior:smooth; overflow-x:hidden }
+    body {
+      background:var(--bg);
+      color:var(--fg);
+      font-family:'Space Mono',monospace;
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased
+    }
+
+    a {
+      color:var(--accent);
+      text-decoration:none;
+      transition:all .3s cubic-bezier(.4, 0, .2, 1)
+    }
+    a:hover { opacity:.9; transform:scale(1.05) }
+
+    /* NAV */
+    nav {
+      position:fixed;
+      top:10px; left:50%; transform:translateX(-50%);
+      background:rgba(0,0,0,.85);
+      backdrop-filter:blur(12px);
+      border:1px solid var(--muted);
+      border-radius:50px;
+      padding:.8rem 2rem;
+      z-index:1000;
+      box-shadow:0 4px 30px var(--glow)
+    }
+    .nav-links { display:flex; gap:1.5rem }
+    .nav-links a {
+      font-family:'JetBrains Mono',monospace;
+      font-size:.95rem; font-weight:700; padding:.4rem 0; position:relative
+    }
+    .nav-links a::after {
+      content:'';
+      position:absolute; width:0; height:2px; bottom:0; left:50%;
+      background:var(--accent);
+      transition:all .3s ease; transform:translateX(-50%)
+    }
+    .nav-links a:hover::after { width:80% }
+    .nav-links a:hover { color:#ddd; transform:translateY(-2px) }
+
+    /* PROGRESS */
+    .progress-bar {
+      position:fixed; top:0; left:0; height:3px;
+      background:var(--accent);
+      z-index:9999; width:0;
+      transition:width .3s cubic-bezier(.4, 0, .2, 1)
+    }
+
+    /* HERO */
+    .hero {
+      min-height:100vh;
+      display:flex; align-items:center; justify-content:center;
+      position:relative; padding:3rem 1.5rem; overflow:hidden
+    }
+    .hero::before {
+      content:'';
+      position:absolute; inset:0;
+      background:radial-gradient(circle at 50% 50%, var(--glow) 0, transparent 70%);
+      transform:translate(calc(var(--mouse-x) * 15px), calc(var(--mouse-y) * 15px));
+      transition:transform .1s ease
+    }
+    .hero-content { position:relative; z-index:1; text-align:center; max-width:1000px }
+    .hero h1 {
+      font-family:'JetBrains Mono',monospace;
+      font-size:4.5rem; letter-spacing:.15em; text-transform:uppercase;
+      margin-bottom:1rem;
+      background:linear-gradient(90deg,#fff,#aaa,#fff);
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      animation:shine 8s infinite linear;
+      text-shadow:0 0 20px var(--glow)
+    }
+    .hero p {
+      font-size:1.2rem; color:var(--muted); max-width:680px; margin:0 auto 1.5rem;
+      animation:fadeIn 1.5s ease-in-out
+    }
+    .hero-cta { display:flex; gap:1rem; justify-content:center; margin-top:1.2rem }
+    .hero-cta a {
+      display:inline-block; padding:.7rem 1.2rem; border:1px solid var(--fg);
+      border-radius:28px; font-weight:700; text-transform:uppercase; font-size:.85rem
+    }
+    .hero-cta a:hover { background:var(--fg); color:var(--bg); transform:scale(1.08) }
+
+    /* SECTIONS */
+    section { padding:6rem 1.5rem; position:relative; max-width:1000px; margin:0 auto }
+    .section-header { text-align:center; margin-bottom:3rem }
+    .section-header h2 {
+      font-family:'JetBrains Mono',monospace;
+      font-size:2.4rem; text-transform:uppercase; position:relative; display:inline-block; margin-bottom:1.5rem
+    }
+    .section-header h2::before {
+      content:''; position:absolute; bottom:-10px; left:50%; transform:translateX(-50%);
+      width:50px; height:3px; background:var(--accent); animation:expandWidth 1s ease-in-out
+    }
+
+    /* ABOUT */
+    .about-content { max-width:800px; margin:0 auto; color:#ddd; font-size:1rem }
+    .about-content p { transition:transform .3s ease }
+    .about-content p:hover { transform:translateX(10px) }
+    :root {
+  --about-shift: 12px;
+  --about-ease: cubic-bezier(.16, 1, .3, 1);
+}
+        @media (prefers-reduced-motion: reduce) {
+  .about-content p {
+    transition: transform .5s var(--about-ease) !important; /* вернуть плавность именно тут */
+  }
+}
+
+    /* CONTACTS */
+    .contact-grid {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:2rem; max-width:800px; margin:0 auto
+    }
+    .contact-card {
+      background:rgba(255,255,255,.05);
+      padding:1.5rem; border-radius:10px; text-align:center;
+      border:1px solid var(--muted);
+      transition:all .3s ease; box-shadow:0 4px 10px var(--glow)
+    }
+    .contact-card:hover {
+      transform:scale(1.03) translateY(-5px);
+      background:rgba(255,255,255,.1); box-shadow:0 10px 20px var(--glow)
+    }
+    .contact-card h3 {
+      font-family:'JetBrains Mono',monospace; font-size:1.1rem; margin-bottom:.5rem
+    }
+    .contact-card p { color:#999; font-size:.95rem; margin-bottom:1rem }
+
+    /* FOOTER */
+    footer {
+      padding:3rem 1.5rem; text-align:center;
+      border-top:1px solid var(--muted);
+      background:linear-gradient(to top,#000,rgba(0,0,0,.9))
+    }
+    .footer p { font-size:.85rem; color:#777 }
+
+    /* SCROLL TOP */
+    .scroll-top {
+      position:fixed; bottom:1.5rem; right:1.5rem; width:45px; height:45px;
+      background:rgba(255,255,255,.1); border:1px solid var(--fg); border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      cursor:pointer; opacity:0; transition:all .3s ease; z-index:1001
+    }
+    .scroll-top.visible { opacity:1; transform:rotate(360deg) }
+    .scroll-top:hover { background:var(--fg); color:var(--bg); transform:scale(1.1) }
+    .scroll-top::before {
+      content:'↑'; font-size:1.3rem; color:var(--fg); transition:color .3s
+    }
+    .scroll-top:hover::before { color:var(--bg) }
+
+    /* CONSENT */
+    .consent-banner {
+      position:fixed; bottom:0; left:0; right:0; background:rgba(0,0,0,.9);
+      color:var(--fg); padding:1rem; z-index:99999; border-top:1px solid var(--muted);
+      display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:.8rem;
+      animation:slideUp .5s ease-out
+    }
+    .consent-banner.hidden { transform:translateY(100%); opacity:0; pointer-events:none }
+    .consent-text { flex:1; margin-right:1rem; font-size:.85rem; color:#999 }
+    .consent-buttons { display:flex; gap:1rem }
+    .consent-button {
+      padding:.6rem 1.2rem; border-radius:6px; cursor:pointer; font-weight:700;
+      text-transform:uppercase; font-size:.85rem; transition:all .3s ease
+    }
+    .consent-accept { background:var(--fg); color:var(--bg); border:none; animation:pulse 2s infinite }
+    .consent-accept:hover { background:#ddd; transform:scale(1.05) }
+    .consent-decline { background:transparent; color:var(--fg); border:1px solid var(--fg) }
+    .consent-decline:hover { background:var(--fg); color:var(--bg); transform:scale(1.05) }
+
+    /* KEYFRAMES */
+    @keyframes shine { 0% { background-position:-500px } 100% { background-position:500px } }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(20px) } to { opacity:1; transform:translateY(0) } }
+    @keyframes slideUp { from { transform:translateY(100%) } to { transform:translateY(0) } }
+    @keyframes expandWidth { from { width:0 } to { width:50px } }
+    @keyframes pulse { 0% { transform:scale(1) } 50% { transform:scale(1.05) } 100% { transform:scale(1) } }
+
+    /* REDUCED MOTION */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important }
+      .hero::before { display:none !important }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width:768px) {
+      nav { top:5px; padding:.5rem 1rem }
+      .nav-links { gap:.8rem }
+      .nav-links a { font-size:.85rem; padding:.2rem 0 }
+      .hero h1 { font-size:3rem }
+      .hero p { font-size:1rem }
+      .section-header h2 { font-size:2rem }
+      section { padding:3rem 1rem }
+      .hero::before { display:none }
+    }
+    @media (max-width:480px) {
+      nav { padding:.3rem .6rem }
+      .nav-links { gap:.4rem; flex-wrap:wrap; justify-content:center }
+      .nav-links a { font: size 0.75rem; }
+      .hero h1 { font-size:2rem }
+      .hero p { font-size:.9rem }
+      .consent-banner { flex-direction:column; text-align:center }
+      .consent-text { margin-right:0; margin-bottom:.8rem }
+      .consent-buttons { width:100%; justify-content:center }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress-bar" id="progress"></div>
+
+  <nav aria-label="главная навигация">
+    <div class="nav-links">
+      <a href="#home">главная</a>
+      <a href="#about">обо мне</a>
+      <a href="#contacts">контакты</a>
+      <a href="https://t.me/mogaqu" target="_blank" rel="noopener noreferrer">telegram</a>
+    </div>
+  </nav>
+
+  <header id="home" class="hero" aria-label="герой">
+    <div class="hero-content">
+      <h1>БИО @MOGAQU</h1>
+      <p>фывцйыпмячрпнроенк</p>
+      <div class="hero-cta">
+        <a href="https://t.me/mogaqu" target="_blank" rel="noopener noreferrer">мой telegram</a>
+        <a href="#about">читать дальше</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="about" aria-labelledby="about-title">
+      <div class="section-header">
+        <h2 id="about-title">о себе</h2>
+      </div>
+      <div class="about-content">
+        <p>моё имя: ярик</p>
+        <p>моя фамилия: ярик</p>
+        <p>так я ярик для души</p>
+        <p>я люблю вайбкодить и заниматься фигней </p>
+        <p>я играю в роблокс, иногда в бравлик </p>
+      </div>
+    </section>
+    <img src="/p.jpg" alt="танцующий я в роблоксе пнг" style="display:block;margin:0 auto;width: 15rem;" />
+    <section id="contacts" aria-labelledby="contacts-title">
+      <div class="section-header">
+        <h2 id="contacts-title">контакты</h2>
+      </div>
+      <div class="contact-grid">
+        <article class="contact-card">
+          <h3>Telegram</h3>
+          <p>самый медленный способ связаться</p>
+          <a href="https://t.me/mogaqu" target="_blank" rel="noopener noreferrer">t.me/mogaqu</a>
+        </article>
+
+        
+        <article class="contact-card">
+          <h3>мой телеграмм канал</h3>
+          <p>---</p>
+          <a href="https://t.me/sigmoida1" target="_blank" rel="noopener noreferrer">https://t.me/sigmoida1</a>
+        </article>
+        
+      </div>
+    </section>
+  </main>
+  
+
+  <footer>
+    <div class="footer">
+      <p>© @mogaqu</p>
+    </div>
+  </footer>
+
+  <button class="scroll-top" id="scrollTop" aria-label="наверх"></button>
+
+
+  <script>
+    // progress bar
+    const scrollTopBtn = document.getElementById('scrollTop');
+    const progress = document.getElementById('progress');
+    const onScroll = () => {
+      const h = document.documentElement;
+      const scrolled = (h.scrollTop || document.body.scrollTop);
+      const height = h.scrollHeight - h.clientHeight;
+      const percent = height ? (scrolled / height) * 100 : 0;
+      progress.style.width = percent + '%';
+      // scroll-top visibility
+      if (scrolled > 300) scrollTopBtn.classList.add('visible'); else scrollTopBtn.classList.remove('visible');
+    };
+    document.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // mouse parallax for hero glow
+    document.addEventListener('mousemove', e => {
+      const x = (e.clientX / window.innerWidth - 0.5).toFixed(3);
+      const y = (e.clientY / window.innerHeight - 0.5).toFixed(3);
+      document.documentElement.style.setProperty('--mouse-x', x);
+      document.documentElement.style.setProperty('--mouse-y', y);
+    }, { passive: true });
+
+    // scroll to top
+    scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+
+    // reduce-motion users: remove JS-driven transforms that assume motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.removeEventListener('mousemove', () => {});
+    }
+  </script>
+</body>
+</html>
